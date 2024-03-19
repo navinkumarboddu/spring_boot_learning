@@ -1,26 +1,38 @@
 package com.pluralsight.conferencedemo.models;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.List;
 
-@Entity(name = "sessions")
+@Entity
+@Table(name = "sessions")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Session {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long session_id;
-    private String session_name;
+    @Column(name = "session_id")
+    private Long sessionId;
 
-    private String session_description;
-    private Integer session_length;
+    @Column(name = "session_name")
+    private String sessionName;
+
+    @Column(name = "session_description")
+    private String sessionDescription;
+
+    @Column(name = "session_length")
+    private Integer sessionLength;
 
     @ManyToMany
     @JoinTable(
-            name="session_speakers",
+            name = "session_speakers",
             joinColumns = @JoinColumn(name = "session_id"),
             inverseJoinColumns = @JoinColumn(name = "speaker_id"))
-    List<Speaker> speakers;
+    private List<Speaker> speakers;
+
+    public Session() {
+        //default constructor
+    }
 
     public List<Speaker> getSpeakers() {
         return speakers;
@@ -30,7 +42,35 @@ public class Session {
         this.speakers = speakers;
     }
 
-    public Session() {
+    public Long getSessionId() {
+        return sessionId;
     }
 
+    public void setSessionId(Long sessionId) {
+        this.sessionId = sessionId;
+    }
+
+    public String getSessionName() {
+        return sessionName;
+    }
+
+    public void setSessionName(String sessionName) {
+        this.sessionName = sessionName;
+    }
+
+    public String getSessionDescription() {
+        return sessionDescription;
+    }
+
+    public void setSessionDescription(String sessionDescription) {
+        this.sessionDescription = sessionDescription;
+    }
+
+    public Integer getSessionLength() {
+        return sessionLength;
+    }
+
+    public void setSessionLength(Integer sessionLength) {
+        this.sessionLength = sessionLength;
+    }
 }
