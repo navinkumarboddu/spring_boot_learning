@@ -1,9 +1,10 @@
 # spring_boot_learning
 This repo contains spring boot trials from various online courses
 
-| Folder Name     | Course Link                                                                          |
-|:----------------|:-------------------------------------------------------------------------------------|
+| Folder Name     | Course Link                                                                                      |
+|:----------------|:-------------------------------------------------------------------------------------------------|
 | conference-demo | PluralSight - https://app.pluralsight.com/library/courses/creating-first-spring-boot-application |
+| trackzill-demo  | PluralSight - https://app.pluralsight.com/library/courses/spring-boot-fundamentals/table-of-contents                                                                                   |
 
 #### Installation Guide on Java & Maven
 
