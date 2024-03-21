@@ -8,30 +8,30 @@ public class Application {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="application_id")
-    private  Integer id;
+    private Long id;
 
-    @Column(name="app_name", nullable = false)
+    @Column(name = "app_name", nullable = false)
     private String name;
 
     @Column(length = 2000)
     private String description;
-
     private String owner;
 
     public Application() {
     }
 
-    public Application(String name, String description, String owner) {
+    public Application(String name, String owner,
+                       String description) {
         this.name = name;
-        this.description = description;
         this.owner = owner;
+        this.description = description;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -43,14 +43,6 @@ public class Application {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getOwner() {
         return owner;
     }
@@ -59,13 +51,22 @@ public class Application {
         this.owner = owner;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Application{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", owner=" + owner +
                 ", description='" + description + '\'' +
-                ", owner='" + owner + '\'' +
                 '}';
     }
 }
