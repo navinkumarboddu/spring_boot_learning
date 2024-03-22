@@ -5,6 +5,7 @@ This repo contains spring boot trials from various online courses
 |:----------------|:-------------------------------------------------------------------------------------------------|
 | conference-demo | PluralSight - https://app.pluralsight.com/library/courses/creating-first-spring-boot-application |
 | trackzill-demo  | PluralSight - https://app.pluralsight.com/library/courses/spring-boot-fundamentals/table-of-contents                                                                                   |
+| todo-app | PluralSight - https://app.pluralsight.com/library/courses/spring-framework-spring-boot-actuator
 
 #### Installation Guide on Java & Maven
 
