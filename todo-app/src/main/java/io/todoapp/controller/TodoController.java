@@ -24,4 +24,32 @@ public class TodoController {
     public List<TodoListDto> getTodoLists() {
         return todoService.getTodoLists();
     }
+
+    @GetMapping("/data")
+    public String data(){
+        return """
+                  {
+                     "menu": {
+                       "id": "file",
+                       "value": "File",
+                       "popup": {
+                         "menuitem": [
+                           {
+                             "value": "New",
+                             "onclick": "CreateNewDoc()"
+                           },
+                           {
+                             "value": "Open",
+                             "onclick": "OpenDoc()"
+                           },
+                           {
+                             "value": "Close",
+                             "onclick": "CloseDoc()"
+                           }
+                         ]
+                       }
+                     }
+                   }
+               """;
+    }
 }
