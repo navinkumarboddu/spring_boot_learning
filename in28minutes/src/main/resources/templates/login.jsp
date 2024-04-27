@@ -1,8 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Yahoo!!</title>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
 </head>
 <body>
-My First JSP!!!
+    <h1>Welcome to My First Thymeleaf Page!!!</h1>
+    <p>My name is <span th:text="${name}"></span></p>
 </body>
 </html>
