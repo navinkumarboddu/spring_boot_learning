@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Login Page</title>
+<title>First Web Application</title>
 </head>
+
 <body>
-    <h1>Welcome to My First Thymeleaf Page!!!</h1>
-    <p>My name is <span th:text="${name}"></span></p>
+	<form method="post">
+		Name : <input type="text" name="name" />
+		Password : <input type="password" name="password" /> 
+		<input type="submit" />
+	</form>
 </body>
+
 </html>
