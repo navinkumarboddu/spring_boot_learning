@@ -5,6 +5,7 @@
 </head>
 
 <body>
+	<span th:text="${errorMessage}" th:style="'color: red;'"></span>
 	<form method="post">
 		Name : <input type="text" name="name" />
 		Password : <input type="password" name="password" /> 
