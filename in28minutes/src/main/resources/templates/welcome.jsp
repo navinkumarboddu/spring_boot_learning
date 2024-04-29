@@ -8,6 +8,7 @@
 
 <body>
     <p>Welcome <span th:text="${name}"></span>!!</p>
+    <a href="/list-todos">Click here to manage your todos</a>
 </body>
 
 </html>
