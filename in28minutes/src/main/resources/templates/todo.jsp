@@ -7,11 +7,12 @@
 </head>
 
 <body>
-	<p>Here are the list of your todos:</p>
-    <ul>
-        <li th:each="todo : ${todos}" th:text="${todo}"></li>
-    </ul>
-    <a href="/add-todos">Add a Todo</a>
+	ADD TODO PAGE for <span th:text="${name}"></span>
+	
+<form method="post">
+	Description : <input name="desc" type="text"/> 
+	<input type="submit"/>	
+</form>
 </body>
 
 </html>
