@@ -7,7 +7,7 @@
 </head>
 
 <body>
-	<p>Here are the list of your todos: <span th:text="${todos}"></span></p>
+	<p>Here are the list of your todos:</p>
     <ul>
         <li th:each="todo : ${todos}" th:text="${todo}"></li>
     </ul>
