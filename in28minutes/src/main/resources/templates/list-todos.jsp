@@ -7,11 +7,26 @@
 </head>
 
 <body>
-	<p>Here are the list of your todos:</p>
-    <ul>
-        <li th:each="todo : ${todos}" th:text="${todo}"></li>
-    </ul>
-    <a href="/add-todos">Add a Todo</a>
+	<div class="container">
+    <table class="table table-striped">
+        <caption>Your todos are</caption>
+        <thead>
+        <tr>
+            <th>Description</th>
+            <th>Target Date</th>
+            <th>Is it Done?</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="todo : ${todos}">
+            <td th:text="${todo.desc}">Description</td>
+            <td th:text="${todo.targetDate}">Target Date</td>
+            <td th:text="${todo.done}">Is it Done?</td>
+        </tr>
+        </tbody>
+    </table>
+    <div><a class="button" href="/add-todos">Add a Todo</a></div>
+</div>
 </body>
 
 </html>
