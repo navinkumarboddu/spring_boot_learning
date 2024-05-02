@@ -11,19 +11,22 @@
 	<div class="container">
     <table class="table table-striped">
         <caption>Your todos are</caption>
+        <br/>
         <thead>
-        <tr>
-            <th>Description</th>
-            <th>Target Date</th>
-            <th>Is it Done?</th>
-        </tr>
+	        <tr>
+	            <th>Description</th>
+	            <th>Target Date</th>
+	            <th>Is it Done?</th>
+	            <th></th>
+	        </tr>
         </thead>
         <tbody>
         <tr th:each="todo : ${todos}">
             <td th:text="${todo.desc}">Description</td>
             <td th:text="${todo.targetDate}">Target Date</td>
             <td th:text="${todo.done}">Is it Done?</td>
-        </tr>
+             <td><a type="button" class="btn btn-warning" th:href="@{/delete-todo(id=${todo.id})}">Delete</a></td>
+		</tr>
         </tbody>
     </table>
     <div><a class="button" href="/add-todos">Add a Todo</a></div>
