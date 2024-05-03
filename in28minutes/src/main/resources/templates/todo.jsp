@@ -8,15 +8,18 @@
 
 <body>
 	<div class="container">
-		<form method="post">
-			<fieldset class="form-group">
-				<label>Description</label> 
-				<input name="desc" type="text"
-					class="form-control" required="required"/>
-			</fieldset>
-
-			<button type="submit" class="btn btn-success">Add</button>
-		</form>
+		
+		<form th:action="@{/add-todos}" method="post" th:object="${todo}">
+	        <fieldset class="form-group">
+	            <label>Description</label>
+	            <!-- Use th:field instead of path -->
+	            <input type="text" th:field="*{desc}" class="form-control" required="required"/>
+	            <!-- Add th:errors to display validation errors -->
+	            <small class="form-text text-danger" th:if="${#fields.hasErrors('desc')}" th:errors="*{desc}"></small>
+	        </fieldset>
+	        <button type="submit" class="btn btn-primary">Submit</button>
+	    </form>
+		
 	</div>
 
 	<!-- Include jQuery and Bootstrap JS from WebJars -->
