@@ -2,7 +2,6 @@ package com.in28minutes.springboot.web.controller;
 
 import java.util.Date;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +14,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.in28minutes.springboot.web.model.Todo;
 import com.in28minutes.springboot.web.service.TodoService;
+
+import jakarta.validation.Valid;
 
 @Controller
 @SessionAttributes("name")

@@ -2,7 +2,8 @@ package com.in28minutes.springboot.web.model;
 
 import java.util.Date;
 
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Size;
+
 
 public class Todo {
     private int id;
