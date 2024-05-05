@@ -10,13 +10,28 @@
 <body>
 	<div class="container">
 
-		<form th:action="@{/add-todos}" method="post" th:object="${todo}">
+		<form method="post" th:object="${todo}">
 			<fieldset class="form-group">
 				<label>Description</label>
 				<input type="text" th:field="*{desc}" class="form-control" required="required" />
 				<!-- Add Thymeleaf validation error message -->
 				<small class="form-text text-warning" th:if="${#fields.hasErrors('desc')}" th:errors="*{desc}"></small>
 			</fieldset>
+			<fieldset class="form-group">
+			    <label for="targetDate">Target Date</label>
+			    <!-- <input type="date" id="targetDate" th:field="*{targetDate}" class="form-control" required="required" /> -->
+			    <input type="date" id="targetDate" th:field="*{targetDate}" 
+           th:value="${#dates.format(todo.targetDate, 'yyyy-MM-dd')}" 
+           class="form-control" required="required" />
+			    <small class="form-text text-warning" th:if="${#fields.hasErrors('targetDate')}" th:errors="*{targetDate}"></small>
+			</fieldset>
+			
+			<!-- <fieldset class="form-group">
+		        <label>Target Date</label>
+		        <input type="date" th:field="*{targetDate}" class="form-control" required="required" />
+		        <input type="date" th:field="*{targetDate}" th:value="${#dates.format(todo.targetDate, 'yyyy-MM-dd')}" class="form-control" required="required" />
+		        <small class="form-text text-warning" th:if="${#fields.hasErrors('targetDate')}" th:errors="*{targetDate}"></small>
+		    </fieldset> -->
 			<button type="submit" class="btn btn-success">Add</button>
 		</form>
 

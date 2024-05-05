@@ -9,9 +9,8 @@
 
 <body>
 	<div class="container">
+	<caption>Your todos are</caption>
     <table class="table table-striped">
-        <caption>Your todos are</caption>
-        <br/>
         <thead>
 	        <tr>
 	            <th>Description</th>
@@ -25,7 +24,8 @@
             <td th:text="${todo.desc}">Description</td>
             <td th:text="${todo.targetDate}">Target Date</td>
             <td th:text="${todo.done}">Is it Done?</td>
-             <td><a type="button" class="btn btn-warning" th:href="@{/delete-todo(id=${todo.id})}">Delete</a></td>
+            <td><a type="button" class="btn btn-success" th:href="@{/update-todo(id=${todo.id})}">Update</a></td>
+            <td><a type="button" class="btn btn-warning" th:href="@{/delete-todo(id=${todo.id})}">Delete</a></td>
 		</tr>
         </tbody>
     </table>
