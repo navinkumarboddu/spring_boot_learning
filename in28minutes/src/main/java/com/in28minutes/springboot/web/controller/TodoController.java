@@ -3,7 +3,6 @@ package com.in28minutes.springboot.web.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,14 +53,14 @@ public class TodoController {
 		service.addTodo((String) model.get("name"), todo.getDesc(), new Date(), false);
 		return "redirect:/list-todos";
 	}
-	
+
 	@RequestMapping(value = "/update-todo", method = RequestMethod.GET)
-	public String showUpdateTodoPage(@RequestParam int id,ModelMap model) {
+	public String showUpdateTodoPage(@RequestParam int id, ModelMap model) {
 		Todo todo = service.retrieveTodo(id);
 		model.put("todo", todo);
 		return "todo";
 	}
-	
+
 	@RequestMapping(value = "/update-todo", method = RequestMethod.POST)
 	public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
 		if (result.hasErrors()) {
@@ -71,19 +70,5 @@ public class TodoController {
 		service.updateTodo(todo);
 		return "redirect:/list-todos";
 	}
-	
-	@GetMapping("/fake-todo")
-    public String showTodoForm(Model model) {
-        Todo todo = new Todo();
-        // Set a sample targetDate
-        todo.setTargetDate(new Date());
 
-        // Format the targetDate in "yyyy-MM-dd" format
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = dateFormat.format(todo.getTargetDate());
-        model.addAttribute("formattedDate", formattedDate);
-
-        model.addAttribute("todo", todo);
-        return "todo-form";
-    }
 }

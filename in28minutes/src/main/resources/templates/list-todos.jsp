@@ -22,7 +22,7 @@
         <tbody>
         <tr th:each="todo : ${todos}">
             <td th:text="${todo.desc}">Description</td>
-            <td th:text="${todo.targetDate}">Target Date</td>
+            <td th:text="${#dates.format(todo.targetDate, 'dd/MM/yyyy')}">Target Date</td>
             <td th:text="${todo.done}">Is it Done?</td>
             <td><a type="button" class="btn btn-success" th:href="@{/update-todo(id=${todo.id})}">Update</a></td>
             <td><a type="button" class="btn btn-warning" th:href="@{/delete-todo(id=${todo.id})}">Delete</a></td>

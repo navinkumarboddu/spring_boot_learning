@@ -20,9 +20,8 @@
 			<fieldset class="form-group">
 			    <label for="targetDate">Target Date</label>
 			    <!-- <input type="date" id="targetDate" th:field="*{targetDate}" class="form-control" required="required" /> -->
-			    <input type="date" id="targetDate" th:field="*{targetDate}" 
-           th:value="${#dates.format(todo.targetDate, 'yyyy-MM-dd')}" 
-           class="form-control" required="required" />
+			    <input type="date" id="targetDate" th:field="*{targetDate}" th:value="${#dates.format(todo.targetDate, 'yyyy-MM-dd')}" required="required"/>
+        		<br/>
 			    <small class="form-text text-warning" th:if="${#fields.hasErrors('targetDate')}" th:errors="*{targetDate}"></small>
 			</fieldset>
 			
