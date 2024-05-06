@@ -71,4 +71,10 @@ public class TodoController {
 		return "redirect:/list-todos";
 	}
 
+	// handler method to handle fragment expression
+    @GetMapping("fragment-expression")
+    public String fragmentExpression(){
+        return "fragment-expression";
+    }
+	
 }
