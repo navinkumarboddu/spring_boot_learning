@@ -9,6 +9,10 @@
 	<div class="container" th:fragment="todoForm">
         <!-- Form section -->
         <form method="post" th:object="${todo}">
+        	<!-- Include CSRF token -->
+    		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        	
+        
             <fieldset class="form-group">
                 <label>Description</label>
                 <input type="text" th:field="*{desc}" class="form-control" required="required" />
