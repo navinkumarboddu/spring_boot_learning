@@ -63,10 +63,10 @@ Solution --->
         #1 
            a. Create a class that implements Converter<String, Date>, where String is the source type (String representation of the date) and Date is the target type (java.util.Date).
            b. Implement the convert method to perform the conversion logic. 
-        Check -> https://github.com/navinkumarboddu/spring_boot_learning/tree/main/in28minutes/src/main/java/com/in28minutes/springboot/web/conmverter/StringToDateConverter.java
+           Check -> https://github.com/navinkumarboddu/spring_boot_learning/tree/main/in28minutes/src/main/java/com/in28minutes/springboot/web/conmverter/StringToDateConverter.java
 
         #2 Register the converter in your Spring MVC configuration.
-        Check -> https://github.com/navinkumarboddu/spring_boot_learning/blob/main/in28minutes/src/main/java/com/in28minutes/springboot/web/WebMvcConfig.java
+           Check -> https://github.com/navinkumarboddu/spring_boot_learning/blob/main/in28minutes/src/main/java/com/in28minutes/springboot/web/WebMvcConfig.java
 
 
 ```
