@@ -1,7 +1,9 @@
 package com.in28minutes.springboot.controller;
 
 import java.util.Arrays;
+import java.util.List;
 
+import com.in28minutes.springboot.web.model.Question;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +11,7 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -17,6 +20,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.in28minutes.springboot.web.Application;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.hamcrest.Matchers.containsString;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -54,5 +62,43 @@ public class SurveyControllerIT {
 	private String createUrl(String uri) {
 		return "http://localhost:" + port + uri;
 	}
+
+	@Test
+	public void retrieveSurveyQuestions() throws Exception {
+		HttpEntity<String> entity = new HttpEntity<>(null, headers);
+
+		ResponseEntity<List<Question>> response = template.exchange(
+				createUrl("/surveys/Survey1/questions"), HttpMethod.GET,
+				entity, new ParameterizedTypeReference<List<Question>>() {});
+
+		Question sampleQuestion = new Question("Question1",
+				"Largest Country in the World", "Russia", Arrays.asList(
+				"India", "Russia", "United States", "China"));
+
+		List<Question> questions = response.getBody();
+		assertTrue(questions != null && questions.contains(sampleQuestion));
+	}
+
+
+	TestRestTemplate restTemplate = new TestRestTemplate();
+
+	@Test
+	public void addQuestion() {
+
+		Question question = new Question("DOESNTMATTER", "Question1", "Russia",
+				Arrays.asList("India", "Russia", "United States", "China"));
+
+		HttpEntity entity = new HttpEntity<Question>(question, headers);
+
+		ResponseEntity<String> response = restTemplate.exchange(
+				createUrl("/surveys/Survey1/questions"),
+				HttpMethod.POST, entity, String.class);
+
+		String actual = response.getHeaders().get(HttpHeaders.LOCATION).get(0);
+
+		assertTrue(actual.contains("/surveys/Survey1/questions/"));
+
+	}
+
 
 }
