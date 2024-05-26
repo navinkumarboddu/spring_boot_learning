@@ -1,4 +1,4 @@
-package com.in28minutes.springboot.controller;
+package com.in28minutes.springboot.web.controller;
 
 import java.util.Arrays;
 import java.util.List;

@@ -16,7 +16,7 @@ import com.in28minutes.springboot.web.model.Question;
 import com.in28minutes.springboot.web.service.SurveyService;
 
 @RestController
-class SurveyController {
+public class SurveyController {
 	@Autowired
 	private SurveyService surveyService;
 
