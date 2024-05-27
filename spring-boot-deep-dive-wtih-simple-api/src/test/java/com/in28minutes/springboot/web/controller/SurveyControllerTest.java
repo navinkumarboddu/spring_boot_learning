@@ -1,5 +1,7 @@
 package com.in28minutes.springboot.web.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.in28minutes.springboot.web.controller.SurveyController;
 import com.in28minutes.springboot.web.model.Question;
 import com.in28minutes.springboot.web.service.SurveyService;
@@ -16,8 +18,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.bind.annotation.GetMapping;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = SurveyController.class)
@@ -50,5 +56,30 @@ public class SurveyControllerTest {
             }
             """;
 		JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
+	}
+
+
+	//@GetMapping("/surveys/{surveyId}/questions")
+	@Test
+	public void testRetrieveAllQuestions() throws Exception {
+		Path path = Path.of("src/test/resources/questions.txt");
+		String questionsJson = Files.readString(path);
+
+		// Create an ObjectMapper instance
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		// Convert the JSON string to a list of Question objects
+		List<Question> questionList = objectMapper.readValue(questionsJson, new TypeReference<List<Question>>() {});
+
+		// Arrange
+		Mockito.when(surveyService.retrieveQuestions(Mockito.anyString())).thenReturn(questionList);
+
+		// Act
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/surveys/Survey1/questions")
+				.accept(MediaType.APPLICATION_JSON);
+		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+		// Assert
+		JSONAssert.assertEquals(questionsJson, result.getResponse().getContentAsString(), false);
 	}
 }

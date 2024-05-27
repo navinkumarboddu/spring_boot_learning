@@ -1,0 +1,46 @@
+[
+    {
+        "id": "Question1",
+        "description": "Largest Country in the World",
+        "correctAnswer": "Russia",
+        "options": [
+            "India",
+            "Russia",
+            "United States",
+            "China"
+        ]
+    },
+    {
+        "id": "Question2",
+        "description": "Most Populus Country in the World",
+        "correctAnswer": "China",
+        "options": [
+            "India",
+            "Russia",
+            "United States",
+            "China"
+        ]
+    },
+    {
+        "id": "Question3",
+        "description": "Highest GDP in the World",
+        "correctAnswer": "United States",
+        "options": [
+            "India",
+            "Russia",
+            "United States",
+            "China"
+        ]
+    },
+    {
+        "id": "Question4",
+        "description": "Second largest english speaking country",
+        "correctAnswer": "India",
+        "options": [
+            "India",
+            "Russia",
+            "United States",
+            "China"
+        ]
+    }
+]
