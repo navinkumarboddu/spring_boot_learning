@@ -74,6 +74,15 @@
 			<version>2.2</version> <!-- or the latest version -->
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	<properties>
 		<maven.compiler.source>21</maven.compiler.source>

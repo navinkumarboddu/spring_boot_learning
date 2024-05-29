@@ -1,5 +1,6 @@
 package com.in28minutes.springboot.web.controller;
 
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.codec.Base64;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.in28minutes.springboot.web.Application;
@@ -38,9 +40,12 @@ public class SurveyControllerIT {
 	HttpHeaders headers = new HttpHeaders();
 
 	@Before
-	public void setupJSONAcceptType() {
+	public void before() {
+		headers.add("Authorization", createHttpAuthenticationHeaderValue(
+				"in28minutes", "123456"));
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 	}
+
 
 	@Test
 	public void retrieveSurveyQuestion() throws Exception {
@@ -63,6 +68,19 @@ public class SurveyControllerIT {
 		return "http://localhost:" + port + uri;
 	}
 
+	private String createHttpAuthenticationHeaderValue(String userId,
+													   String password) {
+
+		String auth = userId + ":" + password;
+
+		byte[] encodedAuth = Base64.encode(auth.getBytes(Charset
+				.forName("US-ASCII")));
+
+		String headerValue = "Basic " + new String(encodedAuth);
+
+		return headerValue;
+	}
+
 	@Test
 	public void retrieveSurveyQuestions() throws Exception {
 		HttpEntity<String> entity = new HttpEntity<>(null, headers);
@@ -78,7 +96,6 @@ public class SurveyControllerIT {
 		List<Question> questions = response.getBody();
 		assertTrue(questions != null && questions.contains(sampleQuestion));
 	}
-
 
 	TestRestTemplate restTemplate = new TestRestTemplate();
 
