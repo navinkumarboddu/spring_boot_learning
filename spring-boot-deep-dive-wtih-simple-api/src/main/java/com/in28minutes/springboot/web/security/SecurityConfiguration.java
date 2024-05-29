@@ -39,7 +39,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
             .httpBasic(Customizer.withDefaults());
         return http.build();
     }
-       
+
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
         UserDetails user1 = User.builder()
@@ -49,4 +49,5 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .build();
         return new InMemoryUserDetailsManager(user1);
     }
+
 }
