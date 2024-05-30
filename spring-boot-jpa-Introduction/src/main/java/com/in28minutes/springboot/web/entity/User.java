@@ -3,23 +3,25 @@ package com.in28minutes.springboot.web.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "app_user")
 public class User {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
 
     private String name;
 
     private String role;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

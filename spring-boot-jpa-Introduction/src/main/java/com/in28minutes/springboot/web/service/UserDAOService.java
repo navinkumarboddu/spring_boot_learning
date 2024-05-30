@@ -14,7 +14,7 @@ public class UserDAOService {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Long saveUser(User user){
+    public long saveUser(User user){
         entityManager.persist(user);
         return user.getId();
     }
