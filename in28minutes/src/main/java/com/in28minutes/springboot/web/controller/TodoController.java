@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.in28minutes.springboot.web.model.Todo;
+import com.in28minutes.springboot.web.repository.TodoRepository;
 import com.in28minutes.springboot.web.service.TodoService;
 
 import jakarta.validation.Valid;
@@ -22,6 +23,9 @@ public class TodoController {
 
 	@Autowired
 	TodoService service;
+	
+	@Autowired
+	TodoRepository todoRepository;
 
 	@RequestMapping(value = "/list-todos", method = RequestMethod.GET)
 	public String showTodos(ModelMap model) {
