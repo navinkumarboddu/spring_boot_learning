@@ -1,6 +1,7 @@
 package com.in28minutes.springboot.web.controller;
 
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,7 +31,7 @@ public class TodoController {
 	@RequestMapping(value = "/list-todos", method = RequestMethod.GET)
 	public String showTodos(ModelMap model) {
 		String name = getLoggedInUserName();
-		model.put("todos", service.retrieveTodos(name));
+		model.put("todos", todoRepository.findByUserName(name));
 		return "list-todos";
 	}
 
@@ -54,7 +55,7 @@ public class TodoController {
 		if(id == 1) {
 			throw new RuntimeException("Something went wrong");
 		}
-		service.deleteTodo(id);
+		todoRepository.deleteById(id);
 		return "redirect:/list-todos";
 	}
 
@@ -63,14 +64,16 @@ public class TodoController {
 		if (result.hasErrors()) {
 			return "todo";
 		}
-		service.addTodo(getLoggedInUserName(), todo.getDesc(), new Date(), false);
+		todo.setUserName(getLoggedInUserName());
+		todo.setTargetDate(new Date());
+		todoRepository.save(todo);
 		return "redirect:/list-todos";
 	}
 
 	@RequestMapping(value = "/update-todo", method = RequestMethod.GET)
 	public String showUpdateTodoPage(@RequestParam int id, ModelMap model) {
-		Todo todo = service.retrieveTodo(id);
-		model.put("todo", todo);
+		Optional<Todo> todo = todoRepository.findById(id);
+		model.put("todo", todo.get());
 		return "todo";
 	}
 
@@ -79,8 +82,8 @@ public class TodoController {
 		if (result.hasErrors()) {
 			return "todo";
 		}
-		todo.setUser(getLoggedInUserName());
-		service.updateTodo(todo);
+		todo.setUserName(getLoggedInUserName());
+		todoRepository.save(todo);
 		return "redirect:/list-todos";
 	}
 
