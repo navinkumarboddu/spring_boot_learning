@@ -70,3 +70,17 @@ Solution --->
 
 
 ```
+
+4
+```xml
+Unable to access the H2-console while using Spring Security (Spring Boot 3.2.5)?
+
+Solution --->
+
+        add a customizer to ignore H2 Console, which should be fine since H2 Console has its own authentication mechanism.
+        @Bean
+        WebSecurityCustomizer webSecurityCustomizer() {
+            return web -> web.ignoring()
+                .requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
+        }
+```
