@@ -1,8 +1,11 @@
 package com.in28minutes.springboot.web.controller;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +24,8 @@ import jakarta.validation.Valid;
 
 @Controller
 public class TodoController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(TodoController.class);
 
 	@Autowired
 	TodoRepository todoRepository;
@@ -29,6 +34,9 @@ public class TodoController {
 	public String showTodos(ModelMap model) {
 		String name = getLoggedInUserName();
 		model.put("todos", todoRepository.findByUserName(name));
+		List<Todo> todos = todoRepository.findByUserName(name);
+		logger.info("UserName: " + name);
+        logger.info("Todos: " + todos);
 		return "list-todos";
 	}
 
