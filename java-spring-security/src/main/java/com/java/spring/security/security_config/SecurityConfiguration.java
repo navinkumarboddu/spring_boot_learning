@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -17,6 +18,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    private UserDetailsService userDetailsService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -26,11 +28,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-          .inMemoryAuthentication()
-          .passwordEncoder(passwordEncoder)
-          .withUser("admin")
-          .password("$2a$10$bf6B87/fzR7uUwGCyghvk.Or66EFCMfs.g720bKOLRT4kOLjLEdoG")
-          .roles("USER","ADMIN");
+            .userDetailsService(userDetailsService)
+            //.inMemoryAuthentication()
+            .passwordEncoder(passwordEncoder)
+            //.withUser("admin")
+            //.password("$2a$10$bf6B87/fzR7uUwGCyghvk.Or66EFCMfs.g720bKOLRT4kOLjLEdoG")
+            //.roles("USER","ADMIN");
+        ;
     }
 
     @Override
