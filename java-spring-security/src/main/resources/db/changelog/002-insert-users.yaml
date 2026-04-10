@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3-insert-admin-user
+      author: navin
+      changes:
+        - insert:
+            tableName: USERS
+            columns:
+              - column:
+                  name: username
+                  value: navin
+              - column:
+                  name: password
+                  value: $2a$10$0KTZpEQRPj4widOQEvM9FOXUsEaabjdXGPByzV0Y1Tcyxd.nPSGn2
+        - insert:
+            tableName: AUTHORITIES
+            columns:
+              - column:
+                  name: authority
+                  value: ROLE_USER
+              - column:
+                  name: user_id
+                  valueNumeric: 1

@@ -1,22 +1,18 @@
 package com.java.spring.security.security_config;
 
-import com.java.spring.security.domain.Authorities;
 import com.java.spring.security.domain.User;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collections;
-import java.util.Set;
-
-@NoArgsConstructor
 public class CustomSecurityUser extends User implements UserDetails {
+    private static final long serialVersionUID = -4381938875186527688L;
+
+    public CustomSecurityUser () {}
 
     public CustomSecurityUser(User user) {
         this.setAuthorities(user.getAuthorities());
-        this.setUsername(user.getUsername());
-        this.setPassword(user.getPassword());
         this.setId(user.getId());
+        this.setPassword(user.getPassword());
+        this.setUsername(user.getUsername());
     }
 
     @Override

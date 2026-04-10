@@ -1,27 +1,42 @@
 package com.java.spring.security.domain;
 
-import com.java.spring.security.security_config.CustomSecurityUser;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
+@Table(name = "AUTHORITIES")
 public class Authorities implements GrantedAuthority {
-
+    private static final long serialVersionUID = -8123526131047887755L;
     private Long id;
     private String authority;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private CustomSecurityUser user;
+    private User user;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public String getAuthority() {
         return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
+
+    @ManyToOne
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
