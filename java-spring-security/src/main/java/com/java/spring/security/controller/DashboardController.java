@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class DashboardController {
 
@@ -18,6 +20,7 @@ public class DashboardController {
     @GetMapping("/dashboard")
     public String getDashboard(@AuthenticationPrincipal User user, ModelMap modelMap) {
         modelMap.addAttribute("user", user);
+        List<User> allUSerAccounts = adminService.getAllUserAccounts();
         return "dashboard";
     }
 }

@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3-insert-admin-user
+      author: navin
+      changes:
+        - insert:
+            tableName: AUTHORITIES
+            columns:
+              - column:
+                  name: authority
+                  value: ROLE_ADMIN
+              - column:
+                  name: user_id
+                  valueNumeric: 1
+      rollback:
+        - delete:
+            tableName: AUTHORITIES
+            where: user_id = 1 and authority = ROLE_ADMIN
